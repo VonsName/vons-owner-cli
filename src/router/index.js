@@ -3,9 +3,11 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Index from '@/components/Index'
+import Global from '../components/Global'
 
-
-Vue.use(Router)
+//将全局变量挂载到vue的原型链上
+Vue.prototype.GLOBAL=Global;
+Vue.use(Router);
 
 export default new Router({
   routes: [

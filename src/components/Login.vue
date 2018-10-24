@@ -10,31 +10,35 @@
 </template>
 
 <script>
+
+
   export default {
     name: "Login",
     data() {
       return {
         message: 'von-owner',
         username: undefined,
-        password: undefined,
-        token: ""
+        password: undefined
       }
     },
     methods: {
       login: function () {
-        // console.log(this.username);
-        // console.log(this.password);
+
         this.$http.get('/login/userLogin', {
           params: {
             username: this.username,
             password: this.password
+          },
+          headers:{
+            'token':this.GLOBAL.token
           }
         }).then((res) => {
           const data = res.data;
-          if (data.code === "SUCCESS") {
-            console.log(data.data.token);
-            this.token = data.data.token;
-            this.$router.push("/success")
+          if (data.code === this.GLOBAL.SUCCESS) {
+            // console.log(data.data.token);
+            this.GLOBAL.token = data.data.token;
+            this.$router.push({name: 'Index', params: {token: this.GLOBAL.token}})
+            // this.$router.push("/success") 不带参数
           } else {
             console.log("error")
           }

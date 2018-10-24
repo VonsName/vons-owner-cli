@@ -4,9 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
+// import base from './http'
+import api from './axios/index'
 
-Vue.config.productionTip = false
-Vue.prototype.$http = axios
+Vue.config.productionTip = false;
+Vue.prototype.$http = axios;
+// Vue.use(base);
+Vue.use(api);
 
 /* eslint-disable no-new */
 new Vue({
@@ -14,4 +18,4 @@ new Vue({
   router,
   components: {App},
   template: '<App/>'
-})
+});
